@@ -1,0 +1,11 @@
+.vs
+*.user
+bin
+obj
+Debug
+Release
+_NCrunch*
+nCrunchTemp*
+TestResults
+packages
+artifacts
