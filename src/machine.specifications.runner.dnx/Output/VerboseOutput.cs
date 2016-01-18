@@ -1,11 +1,5 @@
 namespace Machine.Specifications.Runner.Dnx.Output
 {
-    struct FailedSpecification
-    {
-        public Result Result;
-        public SpecificationInfo Specification;
-    }
-
     class VerboseOutput : IOutput
     {
         readonly IConsole _console;

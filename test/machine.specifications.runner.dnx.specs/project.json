@@ -1,0 +1,19 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "machine.specifications.runner.dnx.specs Class Library",
+  "authors": [ "DerAl" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "commands": {
+    "test": "machine.specifications.runner.dnx"
+  },
+  "dependencies": {
+    "machine.specifications.runner.dnx": "",
+    "Machine.Fakes.NSubstitute": "2.7.0",
+    "FluentAssertions" :  "4.2.1"
+  },
+  "frameworks": {
+    "dnx451": { }
+  }
+}

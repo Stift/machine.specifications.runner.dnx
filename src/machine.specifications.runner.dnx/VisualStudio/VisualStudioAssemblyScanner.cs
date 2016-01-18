@@ -5,6 +5,7 @@ using System.Reflection;
 using Machine.Specifications.Explorers;
 using Machine.Specifications.Model;
 using Microsoft.Dnx.Testing.Abstractions;
+using Microsoft.Extensions.Logging;
 
 namespace Machine.Specifications.Runner.Dnx.VisualStudio
 {
@@ -16,8 +17,8 @@ namespace Machine.Specifications.Runner.Dnx.VisualStudio
 
         public VisualStudioAssemblyScanner(IServiceProvider services)
         {
-            provider = (ISourceInformationProvider)services.GetService(typeof(ISourceInformationProvider));
-            sink = (ITestDiscoverySink)services.GetService(typeof(ITestDiscoverySink));
+            provider = (ISourceInformationProvider) services.GetService(typeof (ISourceInformationProvider));
+            sink = (ITestDiscoverySink) services.GetService(typeof (ITestDiscoverySink));
             converter = new VisualStudioTestConverter();
         }
 
@@ -40,13 +41,21 @@ namespace Machine.Specifications.Runner.Dnx.VisualStudio
 
         private IEnumerable<Test> ConvertToVisualStudioTests(Context context)
         {
-            return context.Specifications.Select(specification => ConvertToVisualStudioTest(context,specification));
+            return context.Specifications.Select(specification => ConvertToVisualStudioTest(context, specification));
         }
 
         private Test ConvertToVisualStudioTest(Context context, Specification specification)
         {
             var test = converter.GetVisualStudioTest(context, specification);
-            var it  = (Delegate)specification.FieldInfo.GetValue(context.Instance);
+            if (context.Instance == null)
+            {
+                return test;
+            }
+            var it = (Delegate) specification.FieldInfo.GetValue(context.Instance);
+            if (it == null)
+            {
+                return test;
+            }
             var methodInfo = it.GetMethodInfo();
             var sourceInfo = provider.GetSourceInformation(methodInfo);
             test.CodeFilePath = sourceInfo.Filename;

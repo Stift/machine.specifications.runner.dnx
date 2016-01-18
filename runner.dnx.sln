@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2E7B9DF7-EAAA-43B3-BB56-0A3712ADFBA2}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "machine.specifications.runner.dnx.specs", "test\machine.specifications.runner.dnx.specs\machine.specifications.runner.dnx.specs.xproj", "{D60A7BB4-9ECB-4DAF-B2A6-6A5957E1A252}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +25,15 @@ Global
 		{75560F13-F7D9-478E-8D74-E0239F5C7159}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75560F13-F7D9-478E-8D74-E0239F5C7159}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75560F13-F7D9-478E-8D74-E0239F5C7159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D60A7BB4-9ECB-4DAF-B2A6-6A5957E1A252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D60A7BB4-9ECB-4DAF-B2A6-6A5957E1A252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D60A7BB4-9ECB-4DAF-B2A6-6A5957E1A252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D60A7BB4-9ECB-4DAF-B2A6-6A5957E1A252}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D60A7BB4-9ECB-4DAF-B2A6-6A5957E1A252} = {2E7B9DF7-EAAA-43B3-BB56-0A3712ADFBA2}
 	EndGlobalSection
 EndGlobal
