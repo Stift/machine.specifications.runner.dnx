@@ -1,15 +1,17 @@
 # machine.specifications.runner.dnx
 
-A runner for specifications written for the machine.specifacations framework and the DNX project system.
+A runner for specifications written for the machine.specifacations framework with the DNX project system.
 
 ## for what?
 
-If you create an ASP.NET 5 Application or a DNX based Console Application you may want to write your tests
-with machine.specifications. With this runner you can run the specifications and from the console.
+If you create an ASP.NET 5 Application or a ASP.NET 5 based Console Application you may also want to 
+write your tests with machine.specifications. With this runner you can run the specifications from 
+the console and within Visual Studio.
 
 ## how?
 
-Download this project and reference it your project.json of the test project, or if possible
+
+Download this project and reference it to the project.json of your test project, or if possible
 
 > Install-Package Machine.Specifications.Runner.dnx
 (not yet, this is an early alpha)
@@ -40,13 +42,19 @@ Running all tests
 
 running specific tests
 
-.NET Core is not supported, this is because of the machine.specifications also wont run on .NET Core.
+.NET Core is not supported, because of machine.specifications also wont run on .NET Core.
+
+
+## how to work on the runner?
+
+Clone the repository, open the solution within Visual Studio 2015 and work on it. It uses itself as a runner. 
+So you dogfood it while developing.
 
 ## roadmap
 
  * running specific tests
  * support RC 2 and RTM of ASP.NET 5
- * support the upcomming dotnet system
+ * support the upcomming dotnet-cli
  * mor output options TeamCity, Appveyour etc.
 
 

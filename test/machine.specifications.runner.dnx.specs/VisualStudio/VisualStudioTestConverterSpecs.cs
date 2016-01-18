@@ -23,7 +23,7 @@ namespace machine.specifications.runner.dnx.specs.VisualStudio
             result = Subject.GetVisualStudioTest(testContext, testSpecification);
         };
 
-        private It should_set_the_guid;//= () => result.Id.Should().HaveValue();
+        private It should_set_the_guid = () => result.Id.Should().HaveValue();
 
         private static ContextInfo testContext;
         private static SpecificationInfo testSpecification;
