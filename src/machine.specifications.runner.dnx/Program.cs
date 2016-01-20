@@ -3,6 +3,7 @@ using System.Linq;
 using Machine.Specifications.Runner.Dnx.Output;
 using Machine.Specifications.Runner.Dnx.VisualStudio;
 using Machine.Specifications.Runner.Impl;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Machine.Specifications.Runner.Dnx
@@ -12,9 +13,11 @@ namespace Machine.Specifications.Runner.Dnx
         private readonly IServiceProvider services;
         private readonly ILibraryManager libraryManager;
         private readonly IAssemblyLoadContext loadContext;
+        readonly ILogger logger;
 
-        public Program(IServiceProvider services)
+        public Program(IServiceProvider services, ILoggerFactory factory)
         {
+            this.logger = factory?.CreateLogger<Program>();
             this.services = services;
             libraryManager = PlatformServices.Default.LibraryManager;
             loadContext = PlatformServices.Default.AssemblyLoadContextAccessor.Default;
@@ -29,23 +32,51 @@ namespace Machine.Specifications.Runner.Dnx
 
         private void Run(string[] args)
         {
-            var designTime = args.Any(a => a.Contains("designtime"));
+            var commandLine = new CommandLine(args);
             var scanner = new VisualStudioAssemblyScanner(services);
-            var assemblyNames = libraryManager.GetReferencingLibraries("machine.specifications").SelectMany(l => l.Assemblies);
+            var assemblyNames =
+                libraryManager.GetReferencingLibraries("machine.specifications").SelectMany(l => l.Assemblies);
             foreach (var assemblyName in assemblyNames)
             {
                 var assembly = loadContext.Load(assemblyName);
-                if (designTime)
+                if (commandLine.DesignTime)
                 {
                     scanner.SendToVisualStudio(assembly);
-                }
-                var listener = new AggregateRunListener(new ISpecificationRunListener[]
+                    var listener = new AggregateRunListener(new ISpecificationRunListener[]
                     {
-                        new OutputRunListener(new ColorOutput(new VerboseOutput(new DefaultConsole()))),
                         new VisualStudioRunListener(services)
                     });
-                var runner = new DefaultRunner(listener, RunOptions.Default);
-                runner.RunAssembly(assembly);
+                    var runner = new DefaultRunner(listener, RunOptions.Default);
+                    if (commandLine.Tests.Any())
+                    {
+                        var converter = new VisualStudioTestConverter();
+                        var contexts = scanner.GetContexts(assembly);
+                        foreach (var context in contexts)
+                        {
+                            foreach (var specification in context.Specifications)
+                            {
+                                var test = converter.GetVisualStudioTest(context, specification);
+                                if (commandLine.Tests.Any(t => t == test.FullyQualifiedName))
+                                {
+                                    runner.RunMember(assembly, specification.FieldInfo);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        runner.RunAssembly(assembly);
+                    }
+                }
+                else
+                {
+                    var listener = new AggregateRunListener(new ISpecificationRunListener[]
+                    {
+                        new OutputRunListener(new ColorOutput(new VerboseOutput(new DefaultConsole()))),
+                    });
+                    var runner = new DefaultRunner(listener, RunOptions.Default);
+                    runner.RunAssembly(assembly);
+                }
             }
         }
     }

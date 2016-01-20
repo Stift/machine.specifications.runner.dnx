@@ -25,8 +25,8 @@ namespace Machine.Specifications.Runner.Dnx.VisualStudio
         {
             var test = new Test();
             test.Properties["Category"] = context.Concern;
-            test.FullyQualifiedName = $"{context.AssemblyName}.{context.Namespace}.{context.TypeName}.{specification.Leader}:{specification.FieldName}";
-            test.DisplayName = $"{context.Name}:{specification.Leader}:{specification.Name}";
+            test.FullyQualifiedName = $"{context.AssemblyName}:{context.TypeName}.{specification.Leader}.{specification.FieldName}";
+            test.DisplayName = $"{context.Name}, {specification.Leader} {specification.Name}";
             test.Id = GuidFromString(test.FullyQualifiedName);
             return test;
         }

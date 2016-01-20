@@ -39,6 +39,12 @@ namespace Machine.Specifications.Runner.Dnx.VisualStudio
             }
         }
 
+        public IEnumerable<Context> GetContexts(Assembly assembly)
+        {
+            var explorer = new AssemblyExplorer();
+            var contexts = explorer.FindContextsIn(assembly);
+            return contexts;
+        }
         private IEnumerable<Test> ConvertToVisualStudioTests(Context context)
         {
             return context.Specifications.Select(specification => ConvertToVisualStudioTest(context, specification));
