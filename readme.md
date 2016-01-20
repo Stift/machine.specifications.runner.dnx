@@ -14,9 +14,8 @@ the console and within Visual Studio.
 Download this project and reference it to the project.json of your test project, or if possible
 
 > Install-Package Machine.Specifications.Runner.dnx
-(not yet, this is an early alpha)
 
-Add the command test command to that project.json
+Add a test command to that project.json
 
 ```
   "commands": {
@@ -36,11 +35,11 @@ with that you get the console runner and the Visual Studio 2015 integration.
 
 ## what works?
 
-Running all tests
+* Running all tests
+* running specific tests
 
 ## what won't work yet?
 
-running specific tests
 
 .NET Core is not supported, because of machine.specifications also wont run on .NET Core.
 
