@@ -1,7 +1,6 @@
 using System;
-using Machine.Specifications.Runner.Dnx.Output;
 
-namespace Machine.Specifications.Runner.Dnx
+namespace Machine.Specifications.Runner.Dnx.Output
 {
     internal class OutputRunListener : ISpecificationRunListener
     {

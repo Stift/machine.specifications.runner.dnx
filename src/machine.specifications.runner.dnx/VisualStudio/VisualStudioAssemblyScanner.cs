@@ -5,7 +5,6 @@ using System.Reflection;
 using Machine.Specifications.Explorers;
 using Machine.Specifications.Model;
 using Microsoft.Dnx.Testing.Abstractions;
-using Microsoft.Extensions.Logging;
 
 namespace Machine.Specifications.Runner.Dnx.VisualStudio
 {

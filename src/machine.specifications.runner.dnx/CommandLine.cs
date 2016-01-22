@@ -5,7 +5,8 @@ namespace Machine.Specifications.Runner.Dnx
 {
     public class CommandLine
     {
-        List<string> tests = new List<string>(); 
+        private readonly List<string> tests = new List<string>(); 
+        
         public CommandLine(string[] args)
         {
             ParseArgs(args);
@@ -13,7 +14,7 @@ namespace Machine.Specifications.Runner.Dnx
 
         void ParseArgs(string[] args)
         {
-            for (int i = 0; i < args.Length; i++)
+            for (var i = 0; i < args.Length; i++)
             {
                 var arg = args[i];
 

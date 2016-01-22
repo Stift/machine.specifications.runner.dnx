@@ -2,11 +2,11 @@ namespace Machine.Specifications.Runner.Dnx.Output
 {
     class VerboseOutput : IOutput
     {
-        readonly IConsole _console;
+        readonly IConsole console;
 
         public VerboseOutput(IConsole console)
         {
-            _console = console;
+            this.console = console;
         }
 
         public void RunStart()
@@ -21,7 +21,7 @@ namespace Machine.Specifications.Runner.Dnx.Output
         public void AssemblyStart(AssemblyInfo assembly)
         {
             EmptyLine();
-            _console.WriteLine("Specs in " + assembly.Name + ":");
+            console.WriteLine("Specs in " + assembly.Name + ":");
         }
 
         public void AssemblyEnd(AssemblyInfo assembly)
@@ -31,7 +31,7 @@ namespace Machine.Specifications.Runner.Dnx.Output
         public void ContextStart(ContextInfo context)
         {
             EmptyLine();
-            _console.WriteLine(context.FullName);
+            console.WriteLine(context.FullName);
         }
 
         public void ContextEnd(ContextInfo context)
@@ -40,7 +40,7 @@ namespace Machine.Specifications.Runner.Dnx.Output
 
         public void SpecificationStart(SpecificationInfo specification)
         {
-            _console.Write($"{specification.Leader}: " + specification.Name);
+            console.Write($"{specification.Leader}: " + specification.Name);
         }
 
         public void Passing(SpecificationInfo specification)
@@ -50,18 +50,18 @@ namespace Machine.Specifications.Runner.Dnx.Output
 
         public void NotImplemented(SpecificationInfo specification)
         {
-            _console.WriteLine(" (NOT IMPLEMENTED)");
+            console.WriteLine(" (NOT IMPLEMENTED)");
         }
 
         public void Ignored(SpecificationInfo specification)
         {
-            _console.WriteLine(" (IGNORED)");
+            console.WriteLine(" (IGNORED)");
         }
 
         public void Failed(SpecificationInfo specification, Result result)
         {
-            _console.WriteLine(" (FAIL)");
-            _console.WriteLine(result.Exception.ToString());
+            console.WriteLine(" (FAIL)");
+            console.WriteLine(result.Exception.ToString());
         }
 
         public void FatalError(ExceptionResult exception)
@@ -72,7 +72,7 @@ namespace Machine.Specifications.Runner.Dnx.Output
 
         void EmptyLine()
         {
-            _console.WriteLine("");
+            console.WriteLine("");
         }
     }
 }

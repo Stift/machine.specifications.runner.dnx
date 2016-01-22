@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Linq;
+using Machine.Specifications.Annotations;
 using Machine.Specifications.Runner.Dnx.Output;
 using Machine.Specifications.Runner.Dnx.VisualStudio;
 using Machine.Specifications.Runner.Impl;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Machine.Specifications.Runner.Dnx
 {
+    [UsedImplicitly]
     public class Program
     {
         private readonly IServiceProvider services;
         private readonly ILibraryManager libraryManager;
         private readonly IAssemblyLoadContext loadContext;
-        readonly ILogger logger;
 
-        public Program(IServiceProvider services, ILoggerFactory factory)
+        public Program(IServiceProvider services)
         {
-            this.logger = factory?.CreateLogger<Program>();
             this.services = services;
             libraryManager = PlatformServices.Default.LibraryManager;
             loadContext = PlatformServices.Default.AssemblyLoadContextAccessor.Default;

@@ -23,11 +23,11 @@ namespace machine.specifications.runner.dnx.specs.VisualStudio
 
         Because of = () => { result = Subject.GetVisualStudioTest(testContext, testSpecification); };
 
-        It should_has_the_guid_set = () => result.Id.Should().Be(new Guid("d3f77b77-1c7c-89f0-1fdd-451536df0faf"));
+        It should_has_the_guid_set = () => result.Id.Should().Be(new Guid("35071a6a-a438-9ed1-820a-132edc850df5"));
 
-        It should_has_the_right_display_name = () => result.DisplayName.Should().Be("When foo, it should do");
+        It should_has_the_right_display_name = () => result.DisplayName.Should().Be("When foo it should do");
 
-        It should_has_a_fully_qualified_name = () => result.FullyQualifiedName.Should().Be("assembly:namespace.When_foo.it.should_do");
+        It should_has_a_fully_qualified_name = () => result.FullyQualifiedName.Should().Be("assembly:namespace.When_foo.it should_do");
 
     }
 }

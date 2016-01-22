@@ -4,41 +4,41 @@ namespace Machine.Specifications.Runner.Dnx.Output
 {
     public class ColorOutput : IOutput
     {
-        readonly IOutput _inner;
+        readonly IOutput inner;
 
         public ColorOutput(IOutput inner)
         {
-            _inner = inner;
+            this.inner = inner;
         }
 
         public void RunStart()
         {
-            _inner.RunStart();
+            inner.RunStart();
         }
 
         public void RunEnd()
         {
-            _inner.RunEnd();
+            inner.RunEnd();
         }
 
         public void AssemblyStart(AssemblyInfo assembly)
         {
-            _inner.AssemblyStart(assembly);
+            inner.AssemblyStart(assembly);
         }
 
         public void AssemblyEnd(AssemblyInfo assembly)
         {
-            _inner.AssemblyEnd(assembly);
+            inner.AssemblyEnd(assembly);
         }
 
         public void ContextStart(ContextInfo context)
         {
-            _inner.ContextStart(context);
+            inner.ContextStart(context);
         }
 
         public void ContextEnd(ContextInfo context)
         {
-            _inner.ContextEnd(context);
+            inner.ContextEnd(context);
         }
 
         public void SpecificationStart(SpecificationInfo specification)
@@ -49,8 +49,8 @@ namespace Machine.Specifications.Runner.Dnx.Output
         {
             Color(ConsoleColor.Green, () =>
             {
-                _inner.SpecificationStart(specification);
-                _inner.Passing(specification);
+                inner.SpecificationStart(specification);
+                inner.Passing(specification);
             });
         }
 
@@ -58,8 +58,8 @@ namespace Machine.Specifications.Runner.Dnx.Output
         {
             Color(ConsoleColor.Gray, () =>
             {
-                _inner.SpecificationStart(specification);
-                _inner.NotImplemented(specification);
+                inner.SpecificationStart(specification);
+                inner.NotImplemented(specification);
             });
         }
 
@@ -67,8 +67,8 @@ namespace Machine.Specifications.Runner.Dnx.Output
         {
             Color(ConsoleColor.Yellow, () =>
             {
-                _inner.SpecificationStart(specification);
-                _inner.Ignored(specification);
+                inner.SpecificationStart(specification);
+                inner.Ignored(specification);
             });
         }
 
@@ -76,8 +76,8 @@ namespace Machine.Specifications.Runner.Dnx.Output
         {
             Color(ConsoleColor.Red, () =>
             {
-                _inner.SpecificationStart(specification);
-                _inner.Failed(specification, result);
+                inner.SpecificationStart(specification);
+                inner.Failed(specification, result);
             });
         }
 
@@ -85,7 +85,7 @@ namespace Machine.Specifications.Runner.Dnx.Output
         {
             Color(ConsoleColor.Red, () =>
             {
-                _inner.FatalError(exception);
+                inner.FatalError(exception);
             });
         }
 

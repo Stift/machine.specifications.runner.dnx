@@ -5,7 +5,7 @@ using Machine.Specifications.Runner.Dnx;
 
 namespace machine.specifications.runner.dnx.specs
 {
-    public class Wenn_having_designTime_and_test_in_args
+    public class WennHavingDesignTimeAndTestInArgs
     {
         static CommandLine commandLine;
         Establish context = () =>
@@ -25,7 +25,7 @@ namespace machine.specifications.runner.dnx.specs
         It should_conaint_the_test = () => commandLine.Tests.Should().Contain("foobar", "hello", "again");
     }
 
-    public class Wenn_having_no_designTime_and_test_in_args
+    public class WennHavingNoDesignTimeAndTestInArgs
     {
         static CommandLine commandLine;
         Establish context = () =>
@@ -43,7 +43,7 @@ namespace machine.specifications.runner.dnx.specs
         It should_conaint_the_test = () => commandLine.Tests.Should().Contain("hello", "again");
     }
 
-    public class Wenn_having_designTime_and_no_test_in_args
+    public class WennHavingDesignTimeAndNoTestInArgs
     {
         static CommandLine commandLine;
         Establish context = () =>
