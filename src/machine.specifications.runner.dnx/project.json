@@ -1,14 +1,13 @@
 {
-  "version": "0.5.0-rc1-1",
-  "description": "DerAlbert.Runner.Specs Class Library",
+  "version": "0.5.0-rc1-2",
+  "description": "machine.specifications.runner.dnx",
   "authors": [ "Albert Weinert" ],
   "tags": [ "" ],
-  "projectUrl": "https://github.com/DerAlbertCom/machine.specifications.runner.dnx",
-  "licenseUrl": "https://raw.githubusercontent.com/DerAlbertCom/machine.specifications.runner.dnx/master/license.txt",
+  "projectUrl": "https://github.com/machine/machine.specifications.runner.dnx",
+  "licenseUrl": "https://raw.githubusercontent.com/machine/machine.specifications.runner.dnx/master/license.txt",
   "dependencies": {
     "Microsoft.Dnx.TestHost": "1.0.0-rc1-*",
-    "Machine.Specifications": "0.9.3",
-    "FluentAssertions": "4.2.1"
+    "Machine.Specifications": "0.9.3"
   },
   "frameworks": {
     "dnx451": { }
